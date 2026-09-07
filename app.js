@@ -1,7 +1,8 @@
 /**
- * 特来电电站评价 H5：无第三方依赖的页面交互入口。
- * APP 负责顶部导航和真实提交接口；本文件负责评分、标签、文字、选图及动画。
- * 对外接口集中在文件末尾的 window.StationReviewH5，接入方式见 README.md。
+ * 特来电电站评价 UI Demo：仅供开发参考页面样式与交互效果。
+ * 重点参考评分、标签、文字、照片预览及动画；后台接口相关实现请勿作为对接依据。
+ * 数据字段、上传和提交回调只用于 Demo 演示，实际业务应按项目接口文档实现。
+ * 交付定位和 UI 交互重点见 README.md。
  */
 (() => {
   'use strict';
@@ -33,7 +34,7 @@
     submitting: false, // 等待接口返回期间防止重复提交。
     submitted: false // 正式成功后锁定；演示提交仍可继续操作。
   };
-  // 真实回调由 APP 注入，不预设服务器地址或原生 Bridge 协议。
+  // Demo 提交回调占位，不是实际业务接口或原生 Bridge 协议的定义。
   const options = { onSubmit: null };
   // 按可见字符计数，组合 emoji 通常计为一个字；旧 WebView 降级为 Unicode 码点。
   const segmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter('zh-CN', { granularity: 'grapheme' }) : null;
@@ -137,8 +138,8 @@
   }
 
   /**
-   * 读取提交数据：评分、评分名称、已选标签、用户原文、按顺序排列的 File/Blob。
-   * 标签按产品定义顺序输出；照片应交给 FormData 或 APP 上传适配层处理。
+   * 读取 Demo 内部状态：评分、评分名称、已选标签、用户原文及照片。
+   * 该结构只用于交互演示，不作为后台接口字段或图片上传方案的依据。
    */
   function getValue() {
     const rating = RATINGS.find((item) => item.value === state.rating);
@@ -267,7 +268,7 @@
     return added;
   }
 
-  // 七、提交：先校验，再调用适配层，只有真实回调成功才展示正式提交成功。
+  // 七、提交状态演示：以下回调与返回值判断均为 Demo 占位，不代表实际后台约定。
   async function submit() {
     if (state.submitting || state.submitted || compositionActive) return false;
     const result = validate();
@@ -325,7 +326,8 @@
   }
 
   /**
-   * APP 初始化：onSubmit 为异步提交回调；safeAreaBottom 为底部安全区像素值。
+   * Demo 配置：onSubmit 为演示用回调占位，不是正式业务接口定义。
+   * safeAreaBottom 为底部安全区像素值。
    * 原生已留安全区时传 0；传 null 恢复系统 env(safe-area-inset-bottom)。
    */
   function init(config = {}) {
