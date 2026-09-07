@@ -6,6 +6,7 @@
 
 ## 查看方式
 
+- [Figma 设计稿](https://www.figma.com/design/YJ7KptNBMPFPQLWv4lZMTA/%E7%89%B9%E6%9D%A5%E7%94%B5-APP-V8.0?node-id=16867-54975)
 - [在线查看 UI Demo](https://wangyekai918-star.github.io/teld-station-review-h5/index.html?demo=1)，也可直接打开本地 `index.html`。
 - 页面用于 APP 内嵌 WebView，顶部状态栏和导航使用 APP 原生区域。
 - 演示提交不会实际上传评论或照片。
