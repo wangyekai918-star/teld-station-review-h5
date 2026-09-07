@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- 电站评价正式页面：仅包含 H5 内容，顶部状态栏和导航由 APP 原生提供。 -->
+<html lang="zh-CN">
+<head>
+  <!-- 使用中文和浅色界面；viewport-fit=cover 允许读取设备底部安全区域。 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>电站评价</title>
+  <!-- 样式独立维护；defer 确保文档结构创建后再执行交互脚本。 -->
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <!-- 统一由脚本校验和显示 Toast，关闭浏览器自带的校验气泡。 -->
+  <form id="review-form" class="review-page" novalidate>
+    <main class="review-content">
+      <!-- 必填评价卡片：表情和标签按 app.js 中的评分配置生成。 -->
+      <section class="rating-card card" aria-labelledby="rating-title">
+        <h1 id="rating-title">本次充电体验怎么样？</h1>
+        <div id="rating-options" class="rating-options" role="radiogroup" aria-labelledby="rating-title" aria-required="true"></div>
+        <!-- 初始隐藏；选择表情后展示该满意度对应的可多选标签。 -->
+        <div id="review-tags" class="review-tags" role="group" aria-label="评价标签（选填，可多选）" hidden></div>
+      </section>
+
+      <!-- 选填体验卡片：自由输入文字与标签独立，照片也可以不添加。 -->
+      <section class="experience-card card" aria-labelledby="experience-title">
+        <div class="experience-heading">
+          <h2 id="experience-title"><label for="experience">说说你的体验</label></h2>
+          <!-- 只有超过 200 字才显示；当前数量红色，/200 保持注释灰色。 -->
+          <span id="character-count" class="character-count" aria-live="polite" hidden><span id="current-count">201</span><span class="count-limit">/200</span></span>
+        </div>
+        <!-- 不设置 maxlength，允许第 201 字输入后再提示超限；高度由 CSS 固定为 5 行。 -->
+        <textarea id="experience" name="experience" rows="5" placeholder="充电是否顺利？环境、设备怎么样 (选填)" aria-describedby="experience-hint" spellcheck="false"></textarea>
+        <span id="experience-hint" class="sr-only">选填，最多200字，超过200字后需要删减才能提交。</span>
+        <!-- 图片按顺序插在添加入口之前；满 9 张隐藏入口，列表支持横向滑动。 -->
+        <div id="photo-list" class="photo-list" role="group" aria-label="评价照片（选填，最多9张，可左右滑动）">
+          <button id="add-photo" class="add-photo photo-tile" type="button" aria-label="添加照片，最多9张">
+            <img src="./images/icon-add-photo.png" width="20" height="20" alt="">
+            <span>照片</span>
+          </button>
+        </div>
+        <!-- 隐藏系统文件选择器，由相机入口触发；支持一次选择多张图片。 -->
+        <input id="photo-input" type="file" accept="image/*" multiple hidden>
+        <span id="photo-status" class="sr-only" aria-live="polite"></span>
+      </section>
+
+      <!-- 评价规则：由前端开发配置现有页面链接，当前不绑定交互。 -->
+      <button id="review-rules" class="review-rules" type="button">
+        <span>评价规则</span><span class="help-icon"><img src="./images/icon-review-help.svg" width="11" height="11" alt=""></span>
+      </button>
+    </main>
+
+    <!-- 固定底部提交区：自动避让设备安全区域和覆盖视口的软键盘。 -->
+    <footer class="submit-bar">
+      <button id="submit-review" class="submit-button" type="submit">提交评论</button>
+    </footer>
+  </form>
+
+  <!-- 共用 Toast，只负责显示提示文案，不承载业务操作。 -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+</body>
+</html>

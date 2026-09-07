@@ -1,0 +1,74 @@
+[
+  {
+    "original": "评价=很不满意, 选中=true.png",
+    "filename": "emoji-very-dissatisfied-active.png",
+    "sha256": "08d00352cd1f7e9b72c29f85011cef35d2f03d6140f54947609c9bdc61229da4",
+    "description": "很不满意表情，亮色图层：默认全部显示或当前选中时显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "评价=很不满意, 选中=false.png",
+    "filename": "emoji-very-dissatisfied-inactive.png",
+    "sha256": "01bec4db8af478f99a578b7852fbbcfb7291d9c463103bafe143d5e0473681ef",
+    "description": "很不满意表情，灰色底图：未选中时随亮色层淡出而显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "评价=不满意, 选中=true.png",
+    "filename": "emoji-dissatisfied-active.png",
+    "sha256": "d5cb4e2f2c4ae0d1fdefaf36339a1981e7e5836040ecbf3fb317aaa8e31b9d5c",
+    "description": "不满意表情，亮色图层：默认全部显示或当前选中时显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "评价=不满意, 选中=false.png",
+    "filename": "emoji-dissatisfied-inactive.png",
+    "sha256": "7ef6d30bda693a34b27ef135f5ca2b4d027a4efd931edbdf1568dbfc28af86d8",
+    "description": "不满意表情，灰色底图：未选中时随亮色层淡出而显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "评价=一般, 选中=true.png",
+    "filename": "emoji-neutral-active.png",
+    "sha256": "02fd784d239241a404489633d950966b29a82aa3099b0c8e3b57386e3f5dd725",
+    "description": "一般表情，亮色图层：默认全部显示或当前选中时显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "评价=一般, 选中=false.png",
+    "filename": "emoji-neutral-inactive.png",
+    "sha256": "4359205d8cffa7350412dae36ef71289d9dd49cb50d4f0c6bacc75f26fb8b2a6",
+    "description": "一般表情，灰色底图：未选中时随亮色层淡出而显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "评价=满意, 选中=true.png",
+    "filename": "emoji-satisfied-active.png",
+    "sha256": "bccc49f8432afb4313aa5fca75ede9038c55efb8475fe3f8dcf82a49ca521bff",
+    "description": "满意表情，亮色图层：默认全部显示或当前选中时显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "评价=满意, 选中=false.png",
+    "filename": "emoji-satisfied-inactive.png",
+    "sha256": "bd3a5088ad714a84f2ac99895b0eaeaf74c866a9eb69f067fdf8c0fad34764d7",
+    "description": "满意表情，灰色底图：未选中时随亮色层淡出而显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "评价=很满意, 选中=true.png",
+    "filename": "emoji-very-satisfied-active.png",
+    "sha256": "41611c08c2f7ed52465343658ff4e214120fa9a81fe7d6d6533daeb0138f0087",
+    "description": "很满意表情，亮色图层：默认全部显示或当前选中时显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "评价=很满意, 选中=false.png",
+    "filename": "emoji-very-satisfied-inactive.png",
+    "sha256": "a17ebaecc51216bbde9b691ba4d9ce3211869bf1442ae492ea252d6300fe151a",
+    "description": "很满意表情，灰色底图：未选中时随亮色层淡出而显示；原图120×120px，页面显示40×40px。"
+  },
+  {
+    "original": "照片.png",
+    "filename": "icon-add-photo.png",
+    "sha256": "cdf5c3d79e12e316107e3010ab25adc24bff11818773643f10ade3d1f48d7e2a",
+    "description": "添加照片相机图标；原图60×60px，页面显示20×20px。"
+  },
+  {
+    "original": "删除.png",
+    "filename": "icon-remove-photo.png",
+    "sha256": "7e4aa6904b79134e431b2df27dc316bf7eec0d107ad74b7e937cf99f7b9d2ab1",
+    "description": "删除照片关闭图标；原图48×48px，页面显示16×16px，点击区域32×32px。"
+  }
+]

@@ -1,0 +1,135 @@
+/* 全局设计变量：品牌色、文字层级、安全区域和系统字体。 */
+:root {
+  color-scheme: light;
+  --brand: #00ace5;
+  --text-primary: #141517;
+  --text-secondary: #414345;
+  --text-tertiary: #6f7173;
+  --text-muted: #b4b6b8;
+  --background: #f4f6f8;
+  --surface-subtle: #f2f5fa;
+  --danger: #fd2020;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --keyboard-inset: 0px;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  color: var(--text-primary);
+  background: var(--background);
+}
+
+/* 基础重置：宽高包含内边距和边框，按钮及输入控件沿用系统字体。 */
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, textarea, input { font: inherit; }
+button { padding: 0; border: 0; cursor: pointer; color: inherit; background: none; touch-action: manipulation; }
+button:disabled { cursor: default; }
+/* 键盘操作时保留可见焦点，不影响触摸状态的设计样式。 */
+button:focus-visible, .rating-input:focus-visible + .rating-content {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+[hidden] { display: none !important; }
+img { display: block; object-fit: contain; }
+h1, h2, p { margin: 0; }
+h1, h2 { font-size: 16px; line-height: 22px; font-weight: 600; }
+/* 只在视觉上隐藏，保留读屏和原生单选控件的无障碍能力。 */
+.sr-only, .rating-input {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* 页面宽度自适应；大屏最大 600px，真实手机按可用视口铺满。 */
+.review-page { width: 100%; max-width: 600px; margin: 0 auto; min-height: 100vh; min-height: 100dvh; }
+/* 内容区保持 8px 外边距，底部预留固定按钮和安全区域空间。 */
+.review-content {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+  padding: 8px 8px calc(80px + var(--safe-bottom) + var(--keyboard-inset));
+}
+/* 两张白色卡片共用 16px 圆角。 */
+.card { width: 100%; background: #fff; border-radius: 16px; }
+/* 评价卡片：动画期间裁切超出部分；子元素不压缩，保持表情和标签原尺寸。 */
+.rating-card { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px 12px 12px; overflow: hidden; }
+.rating-card > * { flex-shrink: 0; }
+/* 五个满意度等分排列，图标 40px，标题和文字不参与缩放。 */
+.rating-options { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); width: 100%; }
+.rating-option { position: relative; min-width: 0; cursor: pointer; touch-action: manipulation; }
+.rating-content { display: flex; flex-direction: column; align-items: center; gap: 4px; border-radius: 8px; }
+.rating-emoji { position: relative; display: block; width: 40px; height: 40px; transform-origin: center; user-select: none; }
+/* 灰色图层在下、亮色图层在上，两张图同步缩放。 */
+.rating-emoji-layer { position: absolute; inset: 0; width: 40px; height: 40px; pointer-events: none; -webkit-user-drag: none; }
+/* 只改变上层透明度，200ms 内变灰/变亮，避免直接换图和中途发白。 */
+.rating-emoji-active { opacity: 1; transition: opacity 200ms cubic-bezier(.4, 0, .2, 1); }
+.rating-option.is-muted .rating-emoji-active { opacity: 0; }
+/* 表情文字颜色同步用 200ms 过渡。 */
+.rating-label { font-size: 12px; line-height: 17px; font-weight: 400; color: var(--text-secondary); white-space: nowrap; transition: color 200ms cubic-bezier(.4, 0, .2, 1); }
+.rating-option.is-muted .rating-label { color: var(--text-muted); }
+/* 遵守系统减少动态效果偏好；回弹及卡片动画在 JS 中同步跳过。 */
+@media (prefers-reduced-motion: reduce) {
+  .rating-emoji-active, .rating-label { transition: none; }
+}
+/* 标签两列排列：三行总高度 126px，每行约 36.67px，行列间距均为 8px。 */
+.review-tags { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 36.666667px; gap: 8px; width: 100%; }
+.review-tag {
+  display: flex; justify-content: center; align-items: center; min-width: 0; padding: 0 3px;
+  border: 1px solid transparent; border-radius: 8px; background: var(--surface-subtle);
+  font-size: 12px; line-height: 17px; font-weight: 400;
+}
+/* 标签选中态：主题色描边、浅蓝色底和加粗文字，再次点击可取消。 */
+.review-tag[aria-pressed="true"] { border-color: var(--brand); background: rgba(0, 172, 229, .05); color: var(--brand); font-weight: 600; }
+/* 体验卡片：标题、五行文本框、照片区域按 8px 间距排列。 */
+.experience-card { display: flex; flex-direction: column; gap: 8px; padding: 12px; }
+.experience-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; height: 22px; }
+/* 超限计数：只把当前字数标红，分母保持灰色。 */
+.character-count { color: var(--danger); font-size: 12px; line-height: 17px; white-space: nowrap; }
+.count-limit { color: var(--text-muted); }
+/* 输入框固定 90px 高、18px 行高；超出内容内部滚动，禁止拖拽改变高度。 */
+#experience {
+  display: block; width: 100%; height: 90px; min-height: 90px; max-height: 90px; margin: 0; padding: 0;
+  border: 0; border-radius: 0; outline: none; resize: none; background: transparent;
+  color: var(--text-secondary); font-size: 13px; font-weight: 400; line-height: 18px;
+  overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; caret-color: var(--brand);
+}
+#experience::placeholder { color: #adb8cc; opacity: 1; }
+/* 照片保持单行横向滚动，不换行、不挤压缩略图，隐藏滚动条。 */
+.photo-list {
+  display: flex; align-items: flex-start; gap: 6px; width: 100%; height: 70px;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.photo-list::-webkit-scrollbar { display: none; }
+/* 照片和添加入口均为 70px 正方形，添加入口一直跟在照片后面。 */
+.photo-tile { position: relative; flex: 0 0 70px; width: 70px; height: 70px; border-radius: 8px; background: var(--surface-subtle); }
+.add-photo { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.add-photo img { width: 20px; height: 20px; }
+.add-photo span { color: var(--text-tertiary); font-size: 12px; line-height: 17px; }
+/* 使用 object-fit: cover 居中裁切照片，保持完整填满方形区域。 */
+.photo-thumbnail { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; }
+/* 删除图标视觉尺寸 16px；点击区域扩大到 32px，仍对齐图片右上角。 */
+.remove-photo { position: absolute; z-index: 1; right: 0; top: 0; width: 32px; height: 32px; padding: 4px 4px 12px 12px; border-radius: 8px; }
+.remove-photo img { width: 16px; height: 16px; }
+/* 评价规则只保留视觉入口；具体链接由前端开发配置。 */
+.review-rules { position: relative; display: flex; align-items: center; gap: 2px; font-size: 12px; line-height: 17px; color: var(--text-muted); }
+.review-rules::before { content: ""; position: absolute; inset: -8px 0; }
+.help-icon { display: flex; align-items: center; justify-content: center; width: 12px; height: 12px; }
+.help-icon img { width: 11px; height: 11px; }
+/* 固定提交区域：随键盘上移并加入底部安全区，保持左右 16px 留白。 */
+.submit-bar {
+  position: fixed; z-index: 5; bottom: var(--keyboard-inset); left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 600px; padding: 8px 16px calc(8px + var(--safe-bottom)); background: #fff;
+}
+/* 键盘已占用底部空间时，取消底栏重复的安全区留白。 */
+body.keyboard-open .submit-bar { padding-bottom: 8px; }
+/* 品牌色胶囊按钮，固定高度 44px；提交中及成功后禁用。 */
+.submit-button { display: flex; align-items: center; justify-content: center; width: 100%; height: 44px; border-radius: 100px; background: var(--brand); color: #fff; font-size: 14px; line-height: 20px; font-weight: 600; }
+.submit-button:active:not(:disabled) { background: #009dd1; }
+.submit-button:disabled { opacity: .65; }
+/* 全局 Toast：黑色 72% 透明背景、12px 圆角，居中且不拦截点击。 */
+.toast {
+  position: fixed; z-index: 30; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  max-width: calc(100vw - 48px); width: max-content; padding: 12px; border-radius: 12px;
+  color: #fff; background: rgba(0, 0, 0, .72); font-size: 15px; line-height: 21px;
+  text-align: center; pointer-events: none;
+}
