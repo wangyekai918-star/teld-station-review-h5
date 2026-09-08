@@ -16,7 +16,7 @@
 | `emoji-very-satisfied-inactive.png` | 很满意，灰色底层 | 120 × 120px | 40 × 40px |
 | `icon-add-photo.png` | 添加照片入口的相机图标 | 60 × 60px | 20 × 20px |
 | `icon-remove-photo.png` | 缩略图右上角删除图标 | 48 × 48px | 16 × 16px，点击区 32 × 32px |
-| `icon-review-help.svg` | 评价规则问号图标 | 原始矢量 | 11 × 11px，居中放入 12px 容器 |
+| `icon-review-help.svg` | 评价须知问号图标 | 原始矢量 | 11 × 11px，居中放入 12px 容器 |
 
 表情两层同时存在：灰色图在下，亮色图在上。未选中时亮色层在 200ms 内淡出，选中时淡入；回弹作用于两层共用的 40px 容器，持续 520ms。
 

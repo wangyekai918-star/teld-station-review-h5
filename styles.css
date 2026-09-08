@@ -111,7 +111,7 @@ h1, h2 { font-size: 16px; line-height: 22px; font-weight: 600; }
 /* 删除图标视觉尺寸 16px；点击区域扩大到 32px，仍对齐图片右上角。 */
 .remove-photo { position: absolute; z-index: 1; right: 0; top: 0; width: 32px; height: 32px; padding: 4px 4px 12px 12px; border-radius: 8px; }
 .remove-photo img { width: 16px; height: 16px; }
-/* 评价规则只保留视觉入口；具体链接由前端开发配置。 */
+/* 评价须知只保留视觉入口；具体链接由前端开发配置。 */
 .review-rules { position: relative; display: flex; align-items: center; gap: 2px; font-size: 12px; line-height: 17px; color: var(--text-muted); }
 .review-rules::before { content: ""; position: absolute; inset: -8px 0; }
 .help-icon { display: flex; align-items: center; justify-content: center; width: 12px; height: 12px; }

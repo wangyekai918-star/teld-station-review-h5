@@ -163,7 +163,7 @@
   function updateControls() {
     const locked = state.submitting || state.submitted;
     ui.submit.disabled = locked || state.adding;
-    ui.submit.textContent = state.submitting ? '提交中…' : state.submitted ? '已提交' : '提交评论';
+    ui.submit.textContent = state.submitting ? '提交中…' : state.submitted ? '已提交' : '提交评价';
     ui.text.readOnly = locked;
     ui.addPhoto.disabled = locked || state.adding;
     ui.form.setAttribute('aria-busy', String(state.submitting || state.adding));
