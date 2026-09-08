@@ -9,8 +9,8 @@
 
   // 一、评分与标签：从左到右对应 1～5 分；标签顺序与产品表格一致。
   const RATINGS = [
-    { value: 1, key: 'very-dissatisfied', label: '很不满意', tags: ['充电失败', '设备故障', '停车费与实际不符', '不对外开放', '导航定位不准确'] },
-    { value: 2, key: 'dissatisfied', label: '不满意', tags: ['充电中断', '有车占位', '环境卫生差', '指引不清晰', '设备维护不及时'] },
+    { value: 1, key: 'very-dissatisfied', label: '很不满意', tags: ['经常跳枪', '设备故障', '无法充满', '停车/进出不便', '位置错误/难找'] },
+    { value: 2, key: 'dissatisfied', label: '不满意', tags: ['停车费与实际不符', '有车占位', '环境卫生差', '指引不清晰', '设备维护不及时'] },
     { value: 3, key: 'neutral', label: '一般', tags: ['充电慢', '需要排队', '收费规则不清晰'] },
     { value: 4, key: 'satisfied', label: '满意', tags: ['设备维护及时', '收费规则清晰', '停车收费与实际相符', '不用排队', '导航准确', '指引清晰好找'] },
     { value: 5, key: 'very-satisfied', label: '很满意', tags: ['充电顺利', '设备完好', '充电快', '现场管理好', '环境卫生好', '位置便利'] }
